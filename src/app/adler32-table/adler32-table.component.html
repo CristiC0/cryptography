@@ -1,0 +1,32 @@
+<table class="table table-hover mt-5 ">
+  <thead>
+    <tr class="table-primary">
+      <th scope="row"></th>
+      <td *ngFor="let letter of letters">{{letter}}</td>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <th scope="row">ASCII</th>
+      <td *ngFor="let code of asciiRepresentation">{{code}}</td>
+    </tr>
+    <tr>
+      <th scope="row">A</th>
+      <td *ngFor="let value of values">{{value[0]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">B</th>
+      <td *ngFor="let value of values">{{value[1]}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+
+ <div class="d-flex flex-column justify-items-center align-items-center">
+    <h3> A = {{mod[0][0]}} % {{mod[0][1]}} = {{mod[0][2]}}</h3>
+    <h3> B = {{mod[1][0]}} % {{mod[1][1]}} = {{mod[1][2]}}</h3>
+    <h3> A =  {{hex[0][0]}} = {{hex[0][1]}}</h3>
+    <h3> B =  {{hex[1][0]}} = {{hex[1][1]}}</h3>
+  </div>
+</div>

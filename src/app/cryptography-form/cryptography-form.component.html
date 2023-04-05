@@ -35,8 +35,9 @@
           <label for="algorithm" class="form-label mt-4"
             >Algorithm</label
           >
-          <select class="form-select" id="algorithm">
-            <option>AES</option>
+          <select class="form-select" id="algorithm" [(ngModel)]="localAlgorithm">
+            <option value="AES" selected="selected">AES</option>
+            <option value="Adler-32">Adler-32</option>
           </select>
         </div>
 

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AESService } from '../aes.service';
+import { Adler32Service } from '../adler-32.service';
 
 @Component({
   selector: 'cryptography-form',
@@ -7,31 +8,52 @@ import { AESService } from '../aes.service';
   styleUrls: ['./cryptography-form.component.scss'],
   providers: [AESService],
 })
-export class CryptographyFormComponent {
+export class CryptographyFormComponent implements OnInit {
   @Output() result = new EventEmitter<any>();
+  @Output() algorithm = new EventEmitter<any>();
   plainText = '';
   key = '';
   output = '';
   localResult: any;
   encryptSelection = true;
+  localAlgorithm = 'AES';
 
-  constructor(private AES: AESService) {}
+  constructor(private AES: AESService, private Adler32: Adler32Service) {}
+
+  ngOnInit() {
+    this.algorithm.emit('AES');
+  }
 
   setResult() {
     this.encryptSelection ? this.encrypt() : this.decrypt();
     this.result.emit(this.localResult);
+    this.algorithm.emit(this.localAlgorithm);
   }
 
   encrypt() {
-    this.localResult = this.AES.AESEncryption(this.plainText, this.key);
+    switch (this.localAlgorithm) {
+      case 'AES':
+        this.localResult = this.AES.AESEncryption(this.plainText, this.key);
+        break;
+      case 'Adler-32':
+        this.localResult = this.Adler32.Adler32Hash(this.plainText);
+        break;
+    }
+
     this.output = this.localResult.text;
-    // console.log(this.AES.AESEncryption(this.plainText, this.key));
   }
 
   decrypt() {
-    this.localResult = this.AES.AESDecryption(this.plainText, this.key);
+    switch (this.localAlgorithm) {
+      case 'AES':
+        this.localResult = this.AES.AESDecryption(this.plainText, this.key);
+        break;
+      case 'Adler-32':
+        this.localResult = '';
+        break;
+    }
+
     this.output = this.localResult.text;
-    // console.log(this.AES.AESEncryption(this.plainText, this.key));
   }
 
   onChange(value: boolean) {

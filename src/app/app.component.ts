@@ -7,9 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AppComponent {
   result: any;
+  algorithm: any;
 
   setResult(result: any) {
     this.result = result;
-    console.log('RESULT', this.result);
+    // console.log('RESULT', this.result);
+  }
+
+  setAlgorithm(algorithm: any) {
+    this.algorithm = algorithm;
+    // console.log('RESULT', this.result);
   }
 }

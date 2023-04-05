@@ -1,2 +1,3 @@
-<cryptography-form (result)="setResult($event)" />
-<aes-grid *ngIf="result" [data]="result.data" [mode]="result.mode" [keys]="result.keys"/>
+<cryptography-form (result)="setResult($event)"  (algorithm)="setAlgorithm($event)"/>
+<aes-grid *ngIf="result && algorithm==='AES'" [data]="result.data" [mode]="result.mode" [keys]="result.keys"/>
+<adler32-table *ngIf="result && algorithm==='Adler-32'" [letters]="result.letters" [values]="result.data" [asciiRepresentation]="result.asciiRepresentation" [hex]="result.hex" [mod]="result.mod" ></adler32-table>

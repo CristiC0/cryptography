@@ -58,4 +58,8 @@ export class OperationsService {
     }
     return result.toString(16).padStart(2, '0');
   }
+
+  dec2hex(dec: number) {
+    return dec.toString(16).padStart(4, '0');
+  }
 }
