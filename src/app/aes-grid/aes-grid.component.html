@@ -1,0 +1,50 @@
+<div class="container w-75 my-auto mt-5">
+  <div class="row " *ngFor="let key of keys; index as i">
+    <h3 class="col-2 text-left">Key {{i}}</h3>
+    <h3 class="col-10 text-left">{{key.join(" ")}}</h3>
+  </div>
+</div>
+
+<ng-container *ngIf="mode; then encrypt; else decrypt">
+</ng-container>
+
+<ng-template #encrypt>
+<div class="container-fluid mt-5">
+  <div class="row mb-3" >
+    <h1 class="col text-center">Round</h1>
+    <h1 class="col text-center">SubBytes</h1>
+    <h1 class="col text-center">ShiftRows</h1>
+    <h1 class="col text-center">MixColumns</h1>
+    <h1 class="col text-center">Add Round Key</h1>
+  </div>
+  <div class="row mb-3" *ngFor="let round of data; index as i">
+    <div class="col d-flex justify-content-center align-items-center fs-1">
+      {{i}}
+
+    </div>
+    <div class="col"><grid *ngIf="round.subBytes" [numbers]="round.subBytes" /> </div>
+    <div class="col"><grid *ngIf="round.shiftRow" [numbers]="round.shiftRow" /> </div>
+    <div class="col"><grid *ngIf="round.mixColumn" [numbers]="round.mixColumn" /> </div>
+    <div class="col"><grid *ngIf="round.addRoundKey" [numbers]="round.addRoundKey" /> </div>
+</div>
+</div>
+</ng-template >
+
+<ng-template #decrypt>
+  <div class="container-fluid mt-5" >
+   <div class="row mb-3">
+    <h1 class="col text-center">Round</h1>
+    <h1 class="col text-center">Add Round Key</h1>
+    <h1 class="col text-center">Inverse MixColumn</h1>
+    <h1 class="col text-center">Inverse ShiftRows</h1>
+    <h1 class="col text-center">Inverse SubBytes</h1>
+  </div>
+   <div class="row mb-3" *ngFor="let round of data; index as i" >
+    <div class="col d-flex justify-content-center align-items-center fs-1">{{i}}</div>
+    <div class="col"><grid *ngIf="round.addRoundKey" [numbers]="round.addRoundKey" /> </div>
+     <div class="col"><grid *ngIf="round.invMixColumn" [numbers]="round.invMixColumn" /> </div>
+    <div class="col"><grid *ngIf="round.invShiftRow" [numbers]="round.invShiftRow" /> </div>
+    <div class="col"><grid *ngIf="round.invSubBytes" [numbers]="round.invSubBytes" /> </div>
+</div>
+</div>
+</ng-template >

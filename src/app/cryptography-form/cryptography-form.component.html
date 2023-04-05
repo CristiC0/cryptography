@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="form-group d-flex gap-2">
+    <textarea
+      class="input form-control"
+      id="input-box"
+      placeholder="Input the plain text..."
+      [(ngModel)]="plainText"
+    ></textarea>
+
+    <div id="options">
+      <div class="form-control bg-white">
+        <div class="btn-group" role="group" >
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio1"
+            autocomplete="off"
+            [checked]="encryptSelection"
+            (change)="onChange(true)"
+          />
+          <label class="btn btn-outline-primary" for="btnradio1">Encrypt</label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio2"
+            autocomplete="off"
+            [checked]="!encryptSelection"
+            (change)="onChange(false)"
+          />
+          <label class="btn btn-outline-primary" for="btnradio2">Decrypt</label>
+        </div>
+        <div class="form-group">
+          <label for="algorithm" class="form-label mt-4"
+            >Algorithm</label
+          >
+          <select class="form-select" id="algorithm">
+            <option>AES</option>
+          </select>
+        </div>
+
+        <label class="form-label mt-4" for="key">Key:</label>
+        <input class="form-control" id="key" type="text" [(ngModel)]="key"  >
+
+        <div class="d-flex g-2 justify-content-around mt-2 gap-3">
+          <button class="btn btn-primary process" (click)="setResult()"></button>
+          <button class="btn btn-primary change" (click)="reverse()" ></button>
+        </div>
+      </div>
+    </div>
+
+    <textarea
+      class="input form-control"
+      id="output-box"
+      placeholder="Encrypted output..."
+      readonly
+      >{{ output }}</textarea
+    >
+  </div>
+</div>
