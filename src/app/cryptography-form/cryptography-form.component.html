@@ -28,6 +28,7 @@
             autocomplete="off"
             [checked]="!encryptSelection"
             (change)="onChange(false)"
+            [disabled]="localAlgorithm!=='AES'"
           />
           <label class="btn btn-outline-primary" for="btnradio2">Decrypt</label>
         </div>
@@ -41,8 +42,8 @@
           </select>
         </div>
 
-        <label class="form-label mt-4" for="key">Key:</label>
-        <input class="form-control" id="key" type="text" [(ngModel)]="key"  >
+        <label *ngIf="localAlgorithm==='AES'" class="form-label mt-4" for="key">Key:</label>
+        <input *ngIf="localAlgorithm==='AES'" class="form-control" id="key" type="text" [(ngModel)]="key"  >
 
         <div class="d-flex g-2 justify-content-around mt-2 gap-3">
           <button class="btn btn-primary process" (click)="setResult()"></button>
@@ -60,3 +61,4 @@
     >
   </div>
 </div>
+
