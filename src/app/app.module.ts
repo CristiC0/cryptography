@@ -9,9 +9,10 @@ import { AESOperationsService } from './aesoperations.service';
 import { AESGridComponent } from './aes-grid/aes-grid.component';
 import { GridComponent } from './grid/grid.component';
 import { Adler32TableComponent } from './adler32-table/adler32-table.component';
+import { ChaumFormulasComponent } from './chaum-formulas/chaum-formulas.component';
 
 @NgModule({
-  declarations: [AppComponent, CryptographyFormComponent, AESGridComponent, GridComponent, Adler32TableComponent],
+  declarations: [AppComponent, CryptographyFormComponent, AESGridComponent, GridComponent, Adler32TableComponent, ChaumFormulasComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [OperationsService, AESOperationsService],
   bootstrap: [AppComponent],

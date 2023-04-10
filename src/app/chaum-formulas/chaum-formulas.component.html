@@ -1,0 +1,15 @@
+<div class="container mt-5">
+ <div class="d-flex flex-column justify-items-center align-items-center">
+    <h3> β = α<sup>a</sup> mod p= {{results.alfa}} <sup>{{results.a}}</sup>mod {{results.p}}={{results.beta}}</h3>
+
+    <h3> y = x<sup>a</sup> mod p= {{results.x}} <sup>{{results.a}}</sup>mod {{results.p}}={{results.y}}</h3>
+
+    <h3> c = y<sup>e<sub>1</sub></sup> * β<sup>e<sub>2</sub></sup> mod p = {{results.y}}<sup>{{results.e1}}</sup> * {{results.beta}}<sup>{{results.e2}}</sup>  mod {{results.p}}={{results.c}}</h3>
+
+    <h3> d = c<sup>a<sup>-1</sup> mod q</sup> mod p = {{results.c}}<sup>{{results.a}}<sup>-1</sup> mod {{results.q}}</sup> mod {{results.p}} = {{results.d[0]}}</h3>
+
+    <h3> d = y<sup>e<sub>1</sub></sup> * β<sup>e<sub>2</sub></sup> mod p = {{results.y}}<sup>{{results.e1}}</sup> * {{results.beta}}<sup>{{results.e2}}</sup>  mod {{results.p}}={{results.d[1]}}</h3>
+
+    <h3> {{results.d[0]}} {{results.d[0]===results.d[1] ? "=" : "≠"}} {{results.d[1]}}</h3>
+  </div>
+</div>

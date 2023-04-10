@@ -39,11 +39,42 @@
           <select class="form-select" id="algorithm" [(ngModel)]="localAlgorithm">
             <option value="AES" selected="selected">AES</option>
             <option value="Adler-32">Adler-32</option>
+            <option value="Chaum">Chaum</option>
           </select>
         </div>
 
         <label *ngIf="localAlgorithm==='AES'" class="form-label mt-4" for="key">Key:</label>
         <input *ngIf="localAlgorithm==='AES'" class="form-control" id="key" type="text" [(ngModel)]="key"  >
+
+        <div class="d-flex g-1">
+        <div class="d-flex justify-content-center align-items-center mt-4">
+        <label *ngIf="localAlgorithm==='Chaum'" class="form-label fs-4" for="key">q</label>
+        <input *ngIf="localAlgorithm==='Chaum'" class="form-control input--number" id="key" type="text" [(ngModel)]="chaumVariables.q"  >
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-4">
+        <label *ngIf="localAlgorithm==='Chaum'" class="form-label fs-4" for="key">α</label>
+        <input *ngIf="localAlgorithm==='Chaum'" class="form-control input--number" id="key" type="text" [(ngModel)]="chaumVariables.alfa"  >
+        </div>
+
+         <div class="d-flex justify-content-center align-items-center mt-4">
+        <label *ngIf="localAlgorithm==='Chaum'" class="form-label fs-4" for="key">a</label>
+        <input *ngIf="localAlgorithm==='Chaum'" class="form-control input--number" id="key" type="text" [(ngModel)]="chaumVariables.a"  >
+        </div>
+        </div>
+
+        <div class="d-flex g-1">
+        <div class="d-flex justify-content-center align-items-center mt-4">
+        <label *ngIf="localAlgorithm==='Chaum'" class="form-label fs-4" for="key">e1</label>
+        <input *ngIf="localAlgorithm==='Chaum'" class="form-control input--number" id="key" type="text" [(ngModel)]="chaumVariables.e1"  >
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-4">
+        <label *ngIf="localAlgorithm==='Chaum'" class="form-label fs-4" for="key">e2</label>
+        <input *ngIf="localAlgorithm==='Chaum'" class="form-control input--number" id="key" type="text" [(ngModel)]="chaumVariables.e2"  >
+        </div>
+        </div>
+
 
         <div class="d-flex g-2 justify-content-around mt-2 gap-3">
           <button class="btn btn-primary process" (click)="setResult()"></button>

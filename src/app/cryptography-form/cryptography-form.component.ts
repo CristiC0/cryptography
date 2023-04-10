@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AESService } from '../aes.service';
 import { Adler32Service } from '../adler-32.service';
-
+import { ChaumService, ChaumVariables } from '../chaum.service';
 @Component({
   selector: 'cryptography-form',
   templateUrl: './cryptography-form.component.html',
@@ -17,8 +17,18 @@ export class CryptographyFormComponent implements OnInit {
   localResult: any;
   encryptSelection = true;
   localAlgorithm = 'AES';
-
-  constructor(private AES: AESService, private Adler32: Adler32Service) {}
+  chaumVariables: ChaumVariables = {
+    q: 0,
+    a: 0,
+    alfa: 0,
+    e1: 0,
+    e2: 0,
+  };
+  constructor(
+    private AES: AESService,
+    private Adler32: Adler32Service,
+    private Chaum: ChaumService
+  ) {}
 
   ngOnInit() {
     this.algorithm.emit('AES');
@@ -38,6 +48,12 @@ export class CryptographyFormComponent implements OnInit {
       case 'Adler-32':
         this.localResult = this.Adler32.Adler32Hash(this.plainText);
         break;
+      case 'Chaum':
+        this.localResult = this.Chaum.ChaumSignature(
+          this.plainText,
+          this.chaumVariables
+        );
+        break;
     }
 
     this.output = this.localResult.text;
@@ -48,7 +64,7 @@ export class CryptographyFormComponent implements OnInit {
       case 'AES':
         this.localResult = this.AES.AESDecryption(this.plainText, this.key);
         break;
-      case 'Adler-32':
+      default:
         this.localResult = '';
         break;
     }
